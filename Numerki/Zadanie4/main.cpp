@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -74,43 +75,6 @@ void wczytajWspolczynniki() {
     else cout << "Brak pliku z wezlami kwadratur Gaussa-Legendre'a, lub inny problem z plikiem.";
 }
 
-float obliczanieP(int i, float x) {
-    if(i==0) return 1;
-    if(i==1) return x;
-    else return (((2*(i-1)+1)/(i-1)+1)*x*obliczanieP(i-1,x)-((i-1)/((i-1)+1))*obliczanieP(i-2,x));
-    }
-
-float obliczaniePprim(int i,float x) {
-    return (i/(x*x-1))*x*obliczanieP(i,x)-(i/(x*x-1))*obliczanieP(i-1,x);
-}
-
-float pow(float x, int n) {
-    float temp=x;
-    if(n==0) return 1;
-    if(n==1) return x;
-    else {
-    for(int i=1;i<n;i++) {
-        x=x*temp;
-        }
-    return x;
-    }
-}
-
-int silnia(int n) {
-    /*int temp=1;
-    if(n==0) return 1;
-    else {
-    for(int i=1;i<=n;i++) {
-        temp=temp*i;
-        }
-    return temp;
-    }*/
-}
-
-float obliczanieA(int k, int n) {
-    //return (-2/((n+2)*obliczanieP(n+2,dane[n+2][k])*obliczaniePprim(n+1,dane[n+1][k])));
-}
-
 void ustawZakres() {
     do {
     a_lower_b=true;
@@ -150,6 +114,23 @@ void wys_ww() {
             cout << '\n';
         }
 
+float Simpson(float N)
+{
+    float h = (b-a)/N;
+    float wynik = 0, temp = 0, x;
+    int i = 1;
+    while(i < N)
+    {
+        x = a + i*h;
+        temp = temp + fun(x-(h/2));
+        wynik = wynik + fun(x);
+        i++;
+    }
+    temp = temp + fun(b-(h/2));
+    wynik = h/6*(fun(a)+fun(b)+2*wynik+4*temp);
+    return wynik;
+}
+
 int main()
 {
     wczytajWezly();
@@ -158,6 +139,10 @@ int main()
     wybierzFunkcje();
     ustawZakres();
 
-    cout << GaussLegendre(iwezlow-2);
+    for(int i = 2; i <= iwezlow; i++)
+    {
+        cout << setprecision(15) <<  GaussLegendre(i-2) << endl;
+        cout << setprecision(15) << Simpson(i) << endl << endl;
+    }
     return 0;
 }

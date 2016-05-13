@@ -6,3 +6,11 @@
 	<iomanip>
 	<vector>
 
+1463155338 source:s:\numerki\numerki\zadanie4\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<iomanip>
+	<vector>
+	<cmath>
+
