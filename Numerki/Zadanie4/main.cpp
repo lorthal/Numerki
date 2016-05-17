@@ -136,8 +136,8 @@ float Simpson(float eps)
         }
         wynik = h/6*(fun(a)+fun(b)+2*wynik+4*temp);
 
-        cout << setprecision(15) << endl << wynik << endl << wynik_poprz_iter << endl;
-        if(fabs(wynik-wynik_poprz_iter) <= eps) flag = false;
+        //cout << setprecision(15) << endl << wynik << endl << wynik_poprz_iter << endl;
+        if(fabs(wynik-wynik_poprz_iter) <= eps) {flag = false; cout << N-1 << endl;}
         else
         {
             wynik_poprz_iter = wynik;
@@ -145,7 +145,9 @@ float Simpson(float eps)
             h = (b-a)/N;
             temp = 0;
             wynik = 0;
+
         }
+
     }
 
     return wynik;
@@ -159,11 +161,11 @@ int main()
     wybierzFunkcje();
     ustawZakres();
 
-//    for(int i = 2; i <= iwezlow; i++)
+    for(int i = 2; i <= iwezlow; i++)
 //    {
-//        cout << setprecision(15) <<  GaussLegendre(i-2) << endl;
+        cout << setprecision(9) <<  GaussLegendre(i-2) << endl;
 //        cout << setprecision(15) << Simpson(i) << endl << endl;
 //    }
-    cout << setprecision(15) << Simpson(0.00001) << endl << endl;
+    cout << setprecision(9) << Simpson(0.00001) << endl << endl;
     return 0;
 }
