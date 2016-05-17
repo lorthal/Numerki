@@ -14,7 +14,7 @@ fstream plik;
 vector<float> wezly[rozmiar];
 vector<float> wspolczynniki[rozmiar];
 funkcja fun;
-float a,b;
+float a,b, eps;
 bool a_lower_b;
 
 float fun1(float x) {
@@ -114,20 +114,40 @@ void wys_ww() {
             cout << '\n';
         }
 
-float Simpson(float N)
+float Simpson(float eps)
 {
+    float wynik = 0, temp = 0;
+    float N = 1;
+    float x, wynik_poprz_iter = 0;
     float h = (b-a)/N;
-    float wynik = 0, temp = 0, x;
-    int i = 1;
-    while(i < N)
+
+    bool flag = true;
+
+
+
+    while(flag)
     {
-        x = a + i*h;
-        temp = temp + fun(x-(h/2));
-        wynik = wynik + fun(x);
-        i++;
+        for(int i = 0; i <= N; i++)
+        {
+            x = a + i*h;
+            temp += fun(x-(h/2));
+
+            if(i < N) wynik += fun(x);
+        }
+        wynik = h/6*(fun(a)+fun(b)+2*wynik+4*temp);
+
+        cout << setprecision(15) << endl << wynik << endl << wynik_poprz_iter << endl;
+        if(fabs(wynik-wynik_poprz_iter) <= eps) flag = false;
+        else
+        {
+            wynik_poprz_iter = wynik;
+            N++;
+            h = (b-a)/N;
+            temp = 0;
+            wynik = 0;
+        }
     }
-    temp = temp + fun(b-(h/2));
-    wynik = h/6*(fun(a)+fun(b)+2*wynik+4*temp);
+
     return wynik;
 }
 
@@ -139,10 +159,11 @@ int main()
     wybierzFunkcje();
     ustawZakres();
 
-    for(int i = 2; i <= iwezlow; i++)
-    {
-        cout << setprecision(15) <<  GaussLegendre(i-2) << endl;
-        cout << setprecision(15) << Simpson(i) << endl << endl;
-    }
+//    for(int i = 2; i <= iwezlow; i++)
+//    {
+//        cout << setprecision(15) <<  GaussLegendre(i-2) << endl;
+//        cout << setprecision(15) << Simpson(i) << endl << endl;
+//    }
+    cout << setprecision(15) << Simpson(0.00001) << endl << endl;
     return 0;
 }
