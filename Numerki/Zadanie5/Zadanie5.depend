@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1464768158 source:s:\numerki\numerki\zadanie5\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<cmath>
+

@@ -136,7 +136,7 @@ float Simpson(float eps)
         }
         wynik = h/6*(fun(a)+fun(b)+2*wynik+4*temp);
 
-        cout << setprecision(15) << endl << wynik << endl << wynik_poprz_iter << endl;
+        //cout << setprecision(15) << endl << wynik << endl << wynik_poprz_iter << endl;
         if(fabs(wynik-wynik_poprz_iter) <= eps) flag = false;
         else
         {
@@ -161,7 +161,7 @@ int main()
 
 //    for(int i = 2; i <= iwezlow; i++)
 //    {
-//        cout << setprecision(15) <<  GaussLegendre(i-2) << endl;
+        cout << setprecision(15) <<  GaussLegendre(iwezlow) << endl;
 //        cout << setprecision(15) << Simpson(i) << endl << endl;
 //    }
     cout << setprecision(15) << Simpson(0.00001) << endl << endl;
