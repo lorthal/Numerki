@@ -177,6 +177,7 @@ void wczytajDane() {
 
     cout << "Podaj stopien wielomianu aproksymujacego: ";
     cin >> n;
+    n++;
 
     cout << "podaj ilosc wezlow [2,10]\n";
     cin >> iwezlow;

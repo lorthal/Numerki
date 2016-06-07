@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1465333800 source:d:\studia\4semestr2015-16\metody numeryczne\numerkigit\numerki\numerki\zadanie5\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<cmath>
+	<vector>
+	"gnuplot_i.hpp"
+
+1465116789 d:\studia\4semestr2015-16\metody numeryczne\numerkigit\numerki\numerki\zadanie5\gnuplot_i.hpp
+	<iostream>
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
+	<stdexcept>
+	<cstdio>
+	<cstdlib>
+	<list>
+	<io.h>
+	<unistd.h>
+
